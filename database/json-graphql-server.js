@@ -24,26 +24,26 @@ export const feed = [
 			calories: '300 Kcal',
 			heartRate: '120 BPM',
 		},
+		category: 'corrida',
 		description: 'Hoje fiz uma corrida matinal e olha foi ótima, bem melhor do que ontem',
 		timestamp: '2025-01-15T07:30:00Z',
 	},
 	{
 		id: 2,
-		workout: {
-			user: {
-				id: 2,
-				name: 'Carlos Mendes',
-			},
-			time: 2700,
-			stats: {
-				distance: '7.2 Km',
-				calories: '450 Kcal',
-				heartRate: '140 BPM',
-			},
-			description:
-				'Treino intervalado hoje! Consegui manter um ritmo bem legal durante todo o percurso',
-			timestamp: '2025-01-15T18:45:00Z',
+		user: {
+			id: 2,
+			name: 'Carlos Mendes',
 		},
+		time: 2700,
+		stats: {
+			distance: '7.2 Km',
+			calories: '450 Kcal',
+			heartRate: '140 BPM',
+		},
+		category: 'corrida',
+		description:
+			'Treino intervalado hoje! Consegui manter um ritmo bem legal durante todo o percurso',
+		timestamp: '2025-01-15T18:45:00Z',
 	},
 	{
 		id: 3,
@@ -57,6 +57,7 @@ export const feed = [
 			calories: '250 Kcal',
 			heartRate: '110 BPM',
 		},
+		category: 'caminhada',
 		description:
 			'Corrida rápida no final do dia. Preciso melhorar a resistência, mas foi um bom treino! Ver mais',
 		timestamp: '2025-01-15T19:15:00Z',
@@ -73,6 +74,7 @@ export const feed = [
 			calories: '600 Kcal',
 			heartRate: '150 BPM',
 		},
+		category: 'caminhada',
 		description:
 			'Long run de domingo! Que sensação incrível completar os 10km. Cada vez mais perto da meta da meia maratona',
 		timestamp: '2025-01-14T08:00:00Z',
@@ -89,6 +91,7 @@ export const feed = [
 			calories: '380 Kcal',
 			heartRate: '130 BPM',
 		},
+		category: 'caminhada',
 		description:
 			'Primeiro treino da semana! Voltando ao ritmo depois do final de semana. Vamos com tudo! Ver mais',
 		timestamp: '2025-01-13T06:30:00Z',
@@ -105,6 +108,7 @@ export const feed = [
 			calories: '280 Kcal',
 			heartRate: '115 BPM',
 		},
+		category: 'caminhada',
 		description:
 			'Treino regenerativo hoje. Focando na recuperação mas mantendo o corpo em movimento',
 		timestamp: '2025-01-13T17:20:00Z',

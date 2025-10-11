@@ -12,7 +12,7 @@
 		"server:json-graphql": "npx json-graphql-server database/json-graphql-server.js --port 3001"
 	},
 	"dependencies": {
-		"@apollo/client": "^4.0.7",
+		"@apollo/client": "^3.13.9",
 		"@emotion/react": "^11.14.0",
 		"@emotion/styled": "^11.14.1",
 		"@mui/icons-material": "^7.3.1",
