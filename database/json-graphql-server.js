@@ -1,0 +1,112 @@
+export const users = [
+	{
+		id: 1,
+		name: 'Pedro Mello',
+		username: 'pedromello',
+		email: 'pedro.mello@teste.com',
+		password: '123123',
+		phone: '11999999999',
+		city: 'Sao Paulo',
+		state: 'SP',
+		bio: 'Adoro correr pela manha!',
+	},
+];
+export const feed = [
+	{
+		id: 1,
+		user: {
+			id: 1,
+			name: 'Ana Silva Correia',
+		},
+		time: 1800,
+		stats: {
+			distance: '2 Km',
+			calories: '300 Kcal',
+			heartRate: '120 BPM',
+		},
+		description: 'Hoje fiz uma corrida matinal e olha foi ótima, bem melhor do que ontem',
+		timestamp: '2025-01-15T07:30:00Z',
+	},
+	{
+		id: 2,
+		workout: {
+			user: {
+				id: 2,
+				name: 'Carlos Mendes',
+			},
+			time: 2700,
+			stats: {
+				distance: '7.2 Km',
+				calories: '450 Kcal',
+				heartRate: '140 BPM',
+			},
+			description:
+				'Treino intervalado hoje! Consegui manter um ritmo bem legal durante todo o percurso',
+			timestamp: '2025-01-15T18:45:00Z',
+		},
+	},
+	{
+		id: 3,
+		user: {
+			id: 3,
+			name: 'Marina Santos',
+		},
+		time: 1200,
+		stats: {
+			distance: '3.5 Km',
+			calories: '250 Kcal',
+			heartRate: '110 BPM',
+		},
+		description:
+			'Corrida rápida no final do dia. Preciso melhorar a resistência, mas foi um bom treino! Ver mais',
+		timestamp: '2025-01-15T19:15:00Z',
+	},
+	{
+		id: 4,
+		user: {
+			id: 4,
+			name: 'João Lima',
+		},
+		time: 3600,
+		stats: {
+			distance: '10.0 Km',
+			calories: '600 Kcal',
+			heartRate: '150 BPM',
+		},
+		description:
+			'Long run de domingo! Que sensação incrível completar os 10km. Cada vez mais perto da meta da meia maratona',
+		timestamp: '2025-01-14T08:00:00Z',
+	},
+	{
+		id: 5,
+		user: {
+			id: 5,
+			name: 'Letícia Oliveira',
+		},
+		time: 2100,
+		stats: {
+			distance: '6.0 Km',
+			calories: '380 Kcal',
+			heartRate: '130 BPM',
+		},
+		description:
+			'Primeiro treino da semana! Voltando ao ritmo depois do final de semana. Vamos com tudo! Ver mais',
+		timestamp: '2025-01-13T06:30:00Z',
+	},
+	{
+		id: 6,
+		user: {
+			id: 6,
+			name: 'Rafael Costa',
+		},
+		time: 1500,
+		stats: {
+			distance: '4.2 Km',
+			calories: '280 Kcal',
+			heartRate: '115 BPM',
+		},
+		description:
+			'Treino regenerativo hoje. Focando na recuperação mas mantendo o corpo em movimento',
+		timestamp: '2025-01-13T17:20:00Z',
+	},
+];
