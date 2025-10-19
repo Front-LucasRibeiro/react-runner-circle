@@ -4,8 +4,13 @@ import './index.css'
 import App from './App.jsx'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
+// Detecta se está em produção ou desenvolvimento
+const GRAPHQL_URI = import.meta.env.PROD 
+	? '/graphql'  // Produção (Vercel)
+	: 'http://localhost:3001/graphql';  // Desenvolvimento (localhost)
+
 const client = new ApolloClient({
-	uri: 'http://localhost:3001/graphql',
+	uri: GRAPHQL_URI,
 	cache: new InMemoryCache(),
 });
 

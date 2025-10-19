@@ -1,6 +1,9 @@
 # React + Vite
-
 Projeto inicializado com Vite + React + TypeScript, com foco em estudos de GraphQL e REST.
+
+"API GraphQL simulada usando serverless functions"
+"Deploy automatizado na Vercel"
+"Demonstra integração React + GraphQL + Apollo Client"
 
 ## Instalação
 
