@@ -28,3 +28,11 @@ export const ADD_FEED_POST = gql`
 		}
 	}
 `;
+
+export const DELETE_FEED_POST = gql`
+	mutation DeleteFeedPost($id: ID!) {
+		deleteFeed(id: $id) {
+			id
+		}
+	}
+`;

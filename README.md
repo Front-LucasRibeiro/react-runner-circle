@@ -1,7 +1,18 @@
 # React + Vite
+
 Projeto inicializado com Vite + React + TypeScript, com foco em estudos de GraphQL e REST.
 
----------------------------------------------------------------------------------------------
+## Instalação
+
+```bash
+npm install
+npm run dev
+```
+
+## Docs
+- https://graphql.org/learn/
+
+---
 
 ## GraphQL
 
@@ -22,6 +33,7 @@ mutation {
 ```
 
 ## Apollo Client
+
 - Biblioteca para consumir APIs GraphQL, gerenciar estado local e remoto
 - Utilização declarativa
 
@@ -29,10 +41,7 @@ mutation {
 npm i @apollo/client graphql
 ```
 
-
-
-
----------------------------------------------------------------------------------------------
+---
 
 ## REST
 
