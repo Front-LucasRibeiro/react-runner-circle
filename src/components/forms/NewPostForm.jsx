@@ -4,7 +4,7 @@ import Button from '../ui/Button'
 import Textarea from '../ui/Textarea'
 import RadioGroup from '../ui/RadioGroup'
 
-function NewPostForm({ onSubmit, onCancel }) {
+function NewPostForm({ onSubmit, onCancel, loading }) {
   const [formData, setFormData] = useState({
     tempo: '',
     distancia: '',
@@ -132,9 +132,10 @@ function NewPostForm({ onSubmit, onCancel }) {
           </Button>
           <Button
             type="submit"
-            className="flex-1 bg-brand-green-lime text-brand-graphite hover:bg-brand-green-medium"
+            className={`flex-1 bg-brand-green-lime text-brand-graphite hover:bg-brand-green-medium ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={loading}
           >
-            Salvar
+            {loading ? 'Salvando...' : 'Salvar'}
           </Button>
         </div>
       </form>
