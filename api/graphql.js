@@ -1,7 +1,3 @@
-import { ApolloServer } from '@apollo/server';
-import { startServerAndCreateHandler } from '@as-integrations/aws-lambda';
-import gql from 'graphql-tag';
-
 // Dados mockados em memória
 let feedData = [
   {
@@ -60,125 +56,78 @@ let feedData = [
   },
 ];
 
-// Schema GraphQL
-const typeDefs = gql`
-  type User {
-    id: Int!
-    name: String!
+// Handler simplificado para Vercel
+export default async function handler(req, res) {
+  // Permitir CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
   }
 
-  type Stats {
-    distance: String!
-    calories: String!
-    heartRate: String!
+  if (req.method !== 'POST') {
+    res.status(405).json({ error: 'Method not allowed' });
+    return;
   }
 
-  type Feed {
-    id: ID!
-    user: User!
-    time: Int!
-    stats: Stats!
-    category: String!
-    description: String!
-    timestamp: String!
-  }
+  try {
+    const { query, variables } = req.body;
 
-  type Query {
-    allFeeds(filter: FilterInput): [Feed!]!
-    Feed(id: ID!): Feed
-  }
-
-  input FilterInput {
-    category: String
-  }
-
-  input UserInput {
-    id: Int!
-    name: String!
-  }
-
-  input StatsInput {
-    distance: String!
-    calories: String!
-    heartRate: String!
-  }
-
-  type Mutation {
-    createFeed(
-      user: UserInput!
-      time: Int!
-      stats: StatsInput!
-      category: String!
-      description: String!
-      timestamp: String!
-    ): Feed!
-    
-    deleteFeed(id: ID!): Feed
-  }
-`;
-
-// Resolvers
-const resolvers = {
-  Query: {
-    allFeeds: (_, { filter }) => {
-      if (filter?.category) {
-        return feedData.filter(feed => feed.category === filter.category);
+    // Parse simples da query
+    if (query.includes('allFeeds')) {
+      const category = variables?.filter?.category;
+      let result = feedData;
+      
+      if (category) {
+        result = feedData.filter(feed => feed.category === category);
       }
-      return feedData;
-    },
-    Feed: (_, { id }) => {
-      return feedData.find(feed => feed.id === id);
-    },
-  },
-  Mutation: {
-    createFeed: (_, args) => {
+
+      res.status(200).json({
+        data: {
+          allFeeds: result
+        }
+      });
+    } else if (query.includes('createFeed')) {
       const newFeed = {
         id: String(feedData.length + 1),
-        user: args.user,
-        time: args.time,
-        stats: args.stats,
-        category: args.category,
-        description: args.description,
-        timestamp: args.timestamp,
+        user: variables.user,
+        time: variables.time,
+        stats: variables.stats,
+        category: variables.category,
+        description: variables.description,
+        timestamp: variables.timestamp,
       };
       feedData.push(newFeed);
-      return newFeed;
-    },
-    deleteFeed: (_, { id }) => {
-      const index = feedData.findIndex(feed => feed.id === id);
-      if (index === -1) return null;
-      const deleted = feedData[index];
-      feedData.splice(index, 1);
-      return deleted;
-    },
-  },
-};
 
-// Criar servidor Apollo
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-});
-
-// Handler para Vercel (compatível com AWS Lambda)
-const handler = startServerAndCreateHandler(server);
-
-export default async function (req, res) {
-  // Converter Request/Response do Vercel para formato Lambda
-  const event = {
-    httpMethod: req.method,
-    headers: req.headers,
-    body: JSON.stringify(req.body),
-    path: req.url,
-  };
-
-  const context = {};
-
-  const result = await handler(event, context);
-
-  res.status(result.statusCode);
-  Object.keys(result.headers || {}).forEach(key => {
-    res.setHeader(key, result.headers[key]);
-  });
-  res.send(result.body);
+      res.status(200).json({
+        data: {
+          createFeed: newFeed
+        }
+      });
+    } else if (query.includes('deleteFeed')) {
+      const index = feedData.findIndex(feed => feed.id === variables.id);
+      if (index !== -1) {
+        const deleted = feedData[index];
+        feedData.splice(index, 1);
+        res.status(200).json({
+          data: {
+            deleteFeed: deleted
+          }
+        });
+      } else {
+        res.status(200).json({
+          data: {
+            deleteFeed: null
+          }
+        });
+      }
+    } else {
+      res.status(400).json({ error: 'Query not supported' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
